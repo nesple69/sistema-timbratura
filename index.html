@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" id="appManifest">
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Timbratura">
@@ -1078,7 +1078,7 @@
         function gestisciInstallazionePWA() {
             const container = document.getElementById('installButtonContainer');
             
-            if (window.matchMedia('(display-mode: standalone)').matches) {
+            if (window.matchMedia('(display-mode: standalone').matches) {
                 container.innerHTML = `
                     <div class="backup-success">
                         <i class="fas fa-check-circle"></i> App già installata sul tablet!
@@ -1103,7 +1103,7 @@
                     container.innerHTML = `
                         <div class="backup-info">
                             <i class="fas fa-info-circle"></i> 
-                            Apri questa pagina sul tablet e segui le istruzioni manuali.
+                            Usa il menu del browser per installare l'app: Chrome → "Aggiungi alla schermata home" o Safari → "Aggiungi alla home"
                         </div>
                     `;
                 }
