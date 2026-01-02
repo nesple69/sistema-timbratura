@@ -1,0 +1,36 @@
+// Istruzioni per correggere il login admin
+
+/*
+PROBLEMA: Il login admin non funziona perché l'hash della password non corrisponde.
+
+SOLUZIONE: Apri il file js/database.js e alla riga 471 circa, 
+nella funzione authenticateAdmin, aggiungi questi console.log per debug:
+
+TROVA queste righe (circa riga 471-475):
+
+            const passwordHash = await hashPassword(password);
+            
+            if (passwordHash !== data.password_hash) {
+                throw new Error('Password errata');
+            }
+
+SOSTITUISCI con:
+
+            const passwordHash = await hashPassword(password);
+            
+            console.log('DEBUG - Password inserita:', password);
+            console.log('DEBUG - Hash calcolato:', passwordHash);
+            console.log('DEBUG - Hash nel database:', data.password_hash);
+            
+            if (passwordHash !== data.password_hash) {
+                throw new Error('Password errata');
+            }
+
+Poi:
+1. Salva il file
+2. Ricarica la pagina (F5)
+3. Riprova il login
+4. Apri la console (F12) e guarda i valori stampati
+
+Questo ci dirà perché gli hash non corrispondono.
+*/
