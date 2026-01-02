@@ -1,0 +1,16 @@
+{
+  "name": "Sistema Timbrature",
+  "short_name": "Timbrature",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/logo-v2.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

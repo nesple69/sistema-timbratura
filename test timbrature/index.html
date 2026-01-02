@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sistema Timbrature</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Manifest & Mobile Web App -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Timbrature">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header" id="app-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-container">
+                        <img src="assets/logo-v2.png" alt="Logo" class="logo" id="company-logo"
+                            onerror="this.style.display='none'">
+                        <h1 class="app-title">Sistema Timbrature</h1>
+                    </div>
+                    <div id="connection-status" class="connection-status online">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Online</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Home View (Directly the Employee List) -->
+            <div id="home-view" class="hidden" data-view="home">
+                <div id="employee-login-container-home" style="margin-top: 1rem;"></div>
+            </div>
+
+            <!-- Admin Floating Button -->
+            <div id="admin-gear" class="admin-setting-gear" onclick="router.navigate('admin-login')">
+                ⚙️
+            </div>
+
+            <!-- Employee Tracking View -->
+            <div id="employee-tracking-view" class="hidden" data-view="employee-tracking">
+                <div id="employee-tracking-container" style="margin-top: 3rem;"></div>
+            </div>
+
+            <!-- Admin Login View -->
+            <div id="admin-login-view" class="hidden" data-view="admin-login">
+                <div id="admin-login-container" style="margin-top: 3rem;"></div>
+            </div>
+
+            <!-- Admin Dashboard View -->
+            <div id="admin-dashboard-view" class="hidden" data-view="admin-dashboard">
+                <div id="admin-dashboard-container" style="margin-top: 2rem;"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js?v=2.3"></script>
+    <script src="js/utils.js?v=2.3"></script>
+    <script src="js/supabase-client.js?v=2.3"></script>
+    <script src="js/database.js?v=2.3"></script>
+    <script src="js/excel-export.js?v=2.3"></script>
+    <script src="js/employee-login.js?v=2.3"></script>
+    <script src="js/employee-tracking.js?v=2.3"></script>
+    <script src="js/admin-login.js?v=2.3"></script>
+    <script src="js/admin-dashboard.js?v=2.3"></script>
+    <script src="js/router.js?v=2.3"></script>
+    <script>
+        // Diagnostic Alert
+        window.addEventListener('load', () => {
+            console.log('App caricata - Versione 2.3');
+            // Mostriamo un piccolo indicatore di versione se utile
+        });
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrato!', reg))
+                    .catch(err => console.error('Errore registrazione SW:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
